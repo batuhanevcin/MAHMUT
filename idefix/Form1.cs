@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+
+
 namespace idefix
 {
     public partial class Form1 : Form
@@ -19,11 +21,12 @@ namespace idefix
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox3.Text = "test amac asdasdads";
             DosyaOku();
         }
 
@@ -36,6 +39,10 @@ namespace idefix
             string yazi = sw.ReadLine();
             while (yazi != null)
             {
+                if (yazi == textBox3.Text) 
+                {
+                    MessageBox.Show("working");
+                }
                 yazi = sw.ReadLine();
             }
             sw.Close();
