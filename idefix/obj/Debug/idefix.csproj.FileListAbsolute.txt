@@ -1,0 +1,14 @@
+C:\project\idefix\idefix\idefix\bin\Debug\idefix.exe.config
+C:\project\idefix\idefix\idefix\bin\Debug\idefix.exe
+C:\project\idefix\idefix\idefix\bin\Debug\idefix.pdb
+C:\project\idefix\idefix\idefix\bin\Debug\Newtonsoft.Json.dll
+C:\project\idefix\idefix\idefix\bin\Debug\Newtonsoft.Json.pdb
+C:\project\idefix\idefix\idefix\bin\Debug\Newtonsoft.Json.xml
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.csprojAssemblyReference.cache
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.Form1.resources
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.Properties.Resources.resources
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.csproj.GenerateResource.cache
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.csproj.CoreCompileInputs.cache
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.csproj.CopyComplete
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.exe
+C:\project\idefix\idefix\idefix\obj\Debug\idefix.pdb

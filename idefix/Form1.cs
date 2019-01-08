@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace idefix
 {
     public partial class Form1 : Form
@@ -20,6 +20,26 @@ namespace idefix
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DosyaOku();
+        }
+
+        private void DosyaOku()
+        {
+            string dosya_yolu = @"C:\test\test.txt";
+            FileStream fs = new FileStream(dosya_yolu, FileMode.Open, FileAccess.Read);
+            StreamReader sw = new StreamReader(fs);
+
+            string yazi = sw.ReadLine();
+            while (yazi != null)
+            {
+                yazi = sw.ReadLine();
+            }
+            sw.Close();
+            fs.Close();
         }
     }
 }
