@@ -26,7 +26,7 @@ namespace idefix
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = "test amac asdasdads";
+            textBox3.Text = "burak";
             DosyaOku();
         }
 
@@ -39,9 +39,9 @@ namespace idefix
             string yazi = sw.ReadLine();
             while (yazi != null)
             {
-                if (yazi == textBox3.Text) 
+                if (yazi.Contains(textBox3.Text))
                 {
-                    MessageBox.Show("working");
+                    MessageBox.Show("Found");
                 }
                 yazi = sw.ReadLine();
             }
