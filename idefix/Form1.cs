@@ -34,7 +34,7 @@ namespace idefix
         {
             string dosya_yolu = @"C:\test\test.txt";
             var lines = System.IO.File.ReadAllLines(dosya_yolu);
-            for(int i=0;i<lines.Length;i++)
+            for(1int i=0;i<lines.Length;i++)
             {
                 if (lines[i].Contains(textBox3.Text))
                 {
