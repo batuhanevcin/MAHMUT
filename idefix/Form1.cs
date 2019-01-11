@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
+using static System.Net.WebRequestMethods;
 
 namespace idefix
 {
@@ -33,23 +33,26 @@ namespace idefix
         private void DosyaOku()
         {
             string dosya_yolu = @"C:\test\test.txt";
-            FileStream fs = new FileStream(dosya_yolu, FileMode.Open, FileAccess.Read);
-            StreamReader sw = new StreamReader(fs);
-
-            string yazi = sw.ReadLine();
-            while (yazi != null)
+            var lines = System.IO.File.ReadAllLines(dosya_yolu);
+            for(int i=0;i<lines.Length;i++)
             {
-                if (yazi.Contains(textBox3.Text))
+                if (lines[i].Contains(textBox3.Text))
                 {
-                    MessageBox.Show("found" + textBox3.Text);
+                    MessageBox.Show("found");
                 }
-                yazi = sw.ReadLine();
             }
-            sw.Close();
-            fs.Close();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
