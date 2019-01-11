@@ -41,10 +41,10 @@ namespace idefix
                 {
                     MessageBox.Show("found");
                     deger = i;
-                    string[] sub = SubArray(lines, i-16, 30);
+                    string[] sub = SubArray(lines, i - 16, 30);
                     Console.Write(sub);
                 }
-            }            
+            }
         }
         public static string[] SubArray(string[] data, int index, int length)
         {
