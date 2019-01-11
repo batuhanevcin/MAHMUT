@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using static System.Net.WebRequestMethods;
 
 namespace idefix
 {
@@ -19,22 +18,13 @@ namespace idefix
         {
             InitializeComponent();
         }
-        public void JsonWriter(JObject JsonString)
-        {
-            
-            using (StreamWriter file = File.CreateText(@"C:\test\test.json"))
-            using (JsonTextWriter writer = new JsonTextWriter(file))
-            {
-                JsonString.WriteTo(writer);
-            }
-        }
 
-        private void TextBox3_TextChanged(object sender, EventArgs e)
+        private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             textBox3.Text = "burak";
             DosyaOku();
@@ -43,25 +33,23 @@ namespace idefix
         private void DosyaOku()
         {
             string dosya_yolu = @"C:\test\test.txt";
-            FileStream fs = new FileStream(dosya_yolu, FileMode.Open, FileAccess.Read);
-            StreamReader sw = new StreamReader(fs);
-
-            string yazi = sw.ReadLine();
-            while (yazi != null)
+            var lines = System.IO.File.ReadAllLines(dosya_yolu);
+            for(int i=0;i<lines.Length;i++)
             {
-                if (yazi.Contains(textBox3.Text))
+                if (lines[i].Contains(textBox3.Text))
                 {
-                    MessageBox.Show("found" + textBox3.Text);
+                    MessageBox.Show("found");
                 }
-                yazi = sw.ReadLine();
             }
-            sw.Close();
-            fs.Close();
         }
 
-        private void TextBox2_TextChanged(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
         }
 
         private void Form1_Load(object sender, EventArgs e)
