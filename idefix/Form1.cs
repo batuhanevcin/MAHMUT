@@ -27,23 +27,26 @@ namespace idefix
         private void button1_Click(object sender, EventArgs e)
         {
             textBox3.Text = "burak";
-            DosyaOku();
+            fileRead();
         }
 
-        private void DosyaOku()
+        private void fileRead()
         {
-            string dosya_yolu = @"C:\test\test.txt";
-            var lines = System.IO.File.ReadAllLines(dosya_yolu);
-
+            string file_path = @"C:\test\test.txt";
+            var lines = System.IO.File.ReadAllLines(file_path);
+            int deger = 0;
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i].Contains(textBox3.Text))
                 {
                     MessageBox.Show("found");
+                    deger = i;
+                    string[] sub = SubArray(lines, i-16, 30);
+                    Console.Write(sub);
                 }
             }
 
-            string[] sub = SubArray(lines, lines.Length, 30);
+            string[] sub = SubArray(lines, 16, 30);
         }
         public static string[] SubArray(string[] data, int index, int length)
         {
@@ -54,7 +57,7 @@ namespace idefix
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-          
+
 
         }
 
