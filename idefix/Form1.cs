@@ -43,7 +43,7 @@ namespace idefix
                 }
             }
 
-            string[] sub = SubArray(lines, 16, 30);
+            string[] sub = SubArray(lines, lines.Length, 30);
         }
         public static string[] SubArray(string[] data, int index, int length)
         {
@@ -64,7 +64,7 @@ namespace idefix
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
