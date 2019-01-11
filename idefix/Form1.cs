@@ -21,12 +21,12 @@ namespace idefix
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = "test amac asdasdads";
+            textBox3.Text = "burak";
             DosyaOku();
         }
 
@@ -39,9 +39,9 @@ namespace idefix
             string yazi = sw.ReadLine();
             while (yazi != null)
             {
-                if (yazi == textBox3.Text) 
+                if (yazi.Contains(textBox3.Text))
                 {
-                    MessageBox.Show("working");
+                    MessageBox.Show("found" + textBox3.Text);
                 }
                 yazi = sw.ReadLine();
             }
@@ -49,7 +49,7 @@ namespace idefix
             fs.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
