@@ -65,6 +65,8 @@ namespace idefix
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var files = Directory.GetFiles("C:\\test\\", "*.*", SearchOption.AllDirectories)
+            .Where(s => s.EndsWith(".txt") || s.EndsWith(".css") || s.EndsWith(".json") || s.EndsWith(".php") || s.EndsWith(".html"));
 
         }
     }
