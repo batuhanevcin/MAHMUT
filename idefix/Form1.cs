@@ -48,5 +48,10 @@ namespace idefix
             sw.Close();
             fs.Close();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
