@@ -34,17 +34,27 @@ namespace idefix
         {
             string dosya_yolu = @"C:\test\test.txt";
             var lines = System.IO.File.ReadAllLines(dosya_yolu);
-            for(1int i=0;i<lines.Length;i++)
+
+            for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i].Contains(textBox3.Text))
                 {
                     MessageBox.Show("found");
                 }
             }
+
+            string[] sub = SubArray(lines, 16, 30);
+        }
+        public static string[] SubArray(string[] data, int index, int length)
+        {
+            string[] result = new string[length];
+            Array.Copy(data, index, result, 0, length);
+            return result;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+          
 
         }
 
