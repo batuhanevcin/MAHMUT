@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace idefix
 {
@@ -18,13 +19,22 @@ namespace idefix
         {
             InitializeComponent();
         }
+        public void JsonWriter(JObject JsonString)
+        {
+            
+            using (StreamWriter file = File.CreateText(@"C:\test\test.json"))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                JsonString.WriteTo(writer);
+            }
+        }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void TextBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             textBox3.Text = "burak";
             DosyaOku();
@@ -49,7 +59,12 @@ namespace idefix
             fs.Close();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
