@@ -21,7 +21,7 @@ namespace idefix
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,12 +41,17 @@ namespace idefix
             {
                 if (yazi.Contains(textBox3.Text))
                 {
-                    MessageBox.Show("Found");
+                    MessageBox.Show("found" + textBox3.Text);
                 }
                 yazi = sw.ReadLine();
             }
             sw.Close();
             fs.Close();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
