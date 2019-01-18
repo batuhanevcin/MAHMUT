@@ -26,3 +26,5 @@ C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\Newtonsoft.Json
 C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\Newtonsoft.Json.xml
 C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\obj\Debug\idefix.csproj.CopyComplete
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\log4net.dll
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\log4net.xml
