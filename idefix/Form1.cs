@@ -72,7 +72,7 @@ namespace idefix
                             JsonSerializer jsonSerializer = new JsonSerializer();
                             serializer.Serialize(jsonStream, sub);
                             jsonStream.Close();
-                            System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i);
+                            System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i+textBox3.Text);
 
                         }
 
