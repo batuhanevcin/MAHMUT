@@ -19,3 +19,10 @@ C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\obj\Debug\idefix.csproj.G
 C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\obj\Debug\idefix.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\obj\Debug\idefix.exe
 C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\obj\Debug\idefix.pdb
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\idefix.exe.config
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\idefix.exe
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\idefix.pdb
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\bin\Debug\Newtonsoft.Json.xml
+C:\Users\admin\source\repos\batuhanevcin\MAHMUT\idefix\obj\Debug\idefix.csproj.CopyComplete

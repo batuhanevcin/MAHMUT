@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using static System.Net.WebRequestMethods;
+using Newtonsoft.Json;
 
 namespace idefix
 {
@@ -19,18 +20,18 @@ namespace idefix
             InitializeComponent();
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void TextBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             textBox3.Text = "burak";
-            fileRead();
+            FileRead();
         }
 
-        private void fileRead()
+        private void FileRead()
         {
             string file_path = @"C:\test\test.txt";
             var lines = System.IO.File.ReadAllLines(file_path);
@@ -41,12 +42,14 @@ namespace idefix
                 {
                     MessageBox.Show("found");
                     deger = i;
-                    string[] sub = SubArray(lines, i-16, 30);
+                    string[] sub = SubArray(lines, i - 16, 30);
                     Console.Write(sub);
+                    StreamWriter file = System.IO.File.CreateText(@"C:\test\test.json");
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(file, sub);
+                    file.Close();
                 }
             }
-
-            string[] sub = SubArray(lines, 16, 30);
         }
         public static string[] SubArray(string[] data, int index, int length)
         {
@@ -55,19 +58,19 @@ namespace idefix
             return result;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
 
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
