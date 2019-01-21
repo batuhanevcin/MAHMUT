@@ -19,6 +19,7 @@ namespace idefix
     public partial class Form1 : Form
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(idefix.Form1));
+
         public Form1()
         {
             BasicConfigurator.Configure();
@@ -33,7 +34,7 @@ namespace idefix
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = "burak";
+
             FileRead();
         }
 
@@ -41,24 +42,28 @@ namespace idefix
         {
 
             var files = Directory.GetFiles(textBox4.Text, "*.*", SearchOption.AllDirectories)
-.Where(s => s.EndsWith(".txt") || s.EndsWith(".css") || s.EndsWith(".json") || s.EndsWith(".php") || s.EndsWith(".html"));
+           .Where(s => s.EndsWith(".txt") || s.EndsWith(".css") || s.EndsWith(".json") || s.EndsWith(".php") || s.EndsWith(".html"));
             foreach (var file in files)
             {
                 var lines = System.IO.File.ReadAllLines(file);
                 int deger = 0;
+
                 for (int i = 0; i < lines.Length; i++)
                 {
+
                     if (lines[i].Contains(textBox3.Text))
                     {
 
-                        //List<string> ReccomendedString = new List<string>();
-                        //ReccomendedString.Add(i.ToString());
                         if (i <= 16)
                         {
-                            MessageBox.Show("istenilen degerlers bulundu");
-                            string[] sub = SubArray(lines, i - i, i + i);
-                            Console.WriteLine(sub);
                             JsonSerializer serializer = new JsonSerializer();
+                            MessageBox.Show("istenilen degerler bulundu");
+                            string[] sub = SubArray(lines, 0, i);
+                            StreamWriter jsonStream = System.IO.File.CreateText(@"C:/Users/admin/Desktop/test.json");
+                            JsonSerializer jsonSerializer = new JsonSerializer();
+                            serializer.Serialize(jsonStream, sub);
+                            jsonStream.Close();
+                            System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i + textBox3.Text);
                         }
                         else
                         {
@@ -67,22 +72,15 @@ namespace idefix
                             Console.WriteLine(sub);
                             string json = JsonConvert.SerializeObject(sub);
                             JsonSerializer serializer = new JsonSerializer();
-
                             StreamWriter jsonStream = System.IO.File.CreateText(@"C:/Users/admin/Desktop/test.json");
                             JsonSerializer jsonSerializer = new JsonSerializer();
                             serializer.Serialize(jsonStream, sub);
                             jsonStream.Close();
-                            System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i+textBox3.Text);
+                            System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i + textBox3.Text);
 
                         }
-
-
-
                     }
-
                 }
-
-
             }
 
         }
@@ -98,6 +96,4 @@ namespace idefix
             textBox4.Text = "C:\test";
         }
     }
-
 }
-
