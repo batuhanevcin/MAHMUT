@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using log4net;
 using log4net.Config;
 using File = System.IO.File;
+using System.Collections;
 
 namespace idefix
 {
@@ -37,18 +38,40 @@ namespace idefix
 
             FileRead();
         }
+        IEnumerable<string> SearchAccessibleFiles(string root, string searchTerm)
+        {
+            var files = new List<string>();
 
+            foreach (var file in Directory.GetFiles(textBox4.Text, "*.*", SearchOption.AllDirectories))
+            {
+                string extension = Path.GetExtension(file);
+                files.Add(extension);
+            }
+            foreach (var subDir in Directory.EnumerateDirectories(root))
+            {
+                try
+                {
+                    files.AddRange(SearchAccessibleFiles(subDir, searchTerm));
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Console.WriteLine("ex");
+                }
+            }
+            return files.Distinct().ToList();
+        }
         private void FileRead()
         {
-
+            SearchAccessibleFiles(textBox4.Text, textBox3.Text);
             var files = Directory.GetFiles(textBox4.Text, "*.*", SearchOption.AllDirectories)
            .Where(s => s.EndsWith(".txt") || s.EndsWith(".css") || s.EndsWith(".json") || s.EndsWith(".php") || s.EndsWith(".html"));
             foreach (var file in files)
             {
+                SearchAccessibleFiles(textBox4.Text, textBox3.Text);
                 var lines = System.IO.File.ReadAllLines(file);
                 int deger = 0;
 
-                for (int i = 0; i < lines.Length; i++)
+                       for (int i = 0; i < lines.Length; i++)
                 {
 
                     if (lines[i].Contains(textBox3.Text))
