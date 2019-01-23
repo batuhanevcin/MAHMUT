@@ -42,10 +42,10 @@ namespace idefix
         {
             var files = new List<string>();
 
-            foreach (var file in Directory.GetFiles(textBox4.Text, "*.*", SearchOption.AllDirectories))
+            foreach (var file in Directory.GetFiles(root))
             {
-                string extension = Path.GetExtension(file);
-                files.Add(extension);
+                //    string extension = Path.GetExtension(file);
+                files.Add(root);
             }
             foreach (var subDir in Directory.EnumerateDirectories(root))
             {
@@ -71,7 +71,7 @@ namespace idefix
                 var lines = System.IO.File.ReadAllLines(file);
                 int deger = 0;
 
-                       for (int i = 0; i < lines.Length; i++)
+                for (int i = 0; i < lines.Length; i++)
                 {
 
                     if (lines[i].Contains(textBox3.Text))
@@ -82,11 +82,13 @@ namespace idefix
                             JsonSerializer serializer = new JsonSerializer();
                             MessageBox.Show("istenilen degerler bulundu");
                             string[] sub = SubArray(lines, 0, i);
-                            StreamWriter jsonStream = System.IO.File.CreateText(@"C:/Users/admin/Desktop/test.json");
-                            JsonSerializer jsonSerializer = new JsonSerializer();
-                            serializer.Serialize(jsonStream, sub);
-                            jsonStream.Close();
-                            System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i + textBox3.Text);
+                            string path = @"C:/Users/admin/Desktop/test.json";
+                            //StreamWriter jsonStream = System.IO.File.CreateText(path);
+                            //JsonSerializer jsonSerializer = new JsonSerializer();
+                            //serializer.Serialize(jsonStream, sub);
+                            //jsonStream.Close();
+                            System.IO.File.AppendAllText(path, file + "/n Istenilen Deger" + i + textBox3.Text);
+
                         }
                         else
                         {
