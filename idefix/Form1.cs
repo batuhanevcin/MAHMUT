@@ -14,6 +14,7 @@ using log4net;
 using log4net.Config;
 using File = System.IO.File;
 using System.Collections;
+using Newtonsoft.Json.Linq;
 
 namespace idefix
 {
@@ -35,8 +36,9 @@ namespace idefix
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            JsonInformationClass json = new JsonInformationClass();
+            FileRead(json);
 
-            FileRead();
         }
         IEnumerable<string> SearchAccessibleFiles(string root, string searchTerm)
         {
@@ -60,8 +62,19 @@ namespace idefix
             }
             return files.Distinct().ToList();
         }
-        private void FileRead()
+        public JsonInformationClass JsonSerilaize(string[] subLower, string[] SubUpper, string SearchTerm, int SearchLine, string path, bool IsSucces)
         {
+            JsonInformationClass jsonObj = new JsonInformationClass();
+            jsonObj.SubLowerr = subLower;
+            jsonObj.SubUpper = SubUpper;
+            jsonObj.SearchLine = SearchLine;
+            jsonObj.SearchTerm = SearchTerm;
+            jsonObj.Path = path;
+            return jsonObj;
+        }
+        private void FileRead(object Json)
+        {
+            List<JsonInformationClass> shapes = new List<JsonInformationClass>();
             SearchAccessibleFiles(textBox4.Text, textBox3.Text);
             var files = Directory.GetFiles(textBox4.Text, "*.*", SearchOption.AllDirectories)
            .Where(s => s.EndsWith(".txt") || s.EndsWith(".css") || s.EndsWith(".json") || s.EndsWith(".php") || s.EndsWith(".html"));
@@ -70,7 +83,7 @@ namespace idefix
                 SearchAccessibleFiles(textBox4.Text, textBox3.Text);
                 var lines = System.IO.File.ReadAllLines(file);
                 int deger = 0;
-
+               
                 for (int i = 0; i < lines.Length; i++)
                 {
 
@@ -81,33 +94,59 @@ namespace idefix
                         {
                             JsonSerializer serializer = new JsonSerializer();
                             MessageBox.Show("istenilen degerler bulundu");
-                            string[] sub = SubArray(lines, 0, i);
-                            string path = @"C:/Users/admin/Desktop/test.json";
+                            string[] subLower = null;
+
+                            string[] subUpper = SubArray(lines, 0, i+1);
+                        
                             //StreamWriter jsonStream = System.IO.File.CreateText(path);
                             //JsonSerializer jsonSerializer = new JsonSerializer();
                             //serializer.Serialize(jsonStream, sub);
                             //jsonStream.Close();
-                            System.IO.File.AppendAllText(path, file + "/n Istenilen Deger" + i + textBox3.Text);
+                            //        System.IO.File.AppendAllText(path, file + "/n Istenilen Deger" + i + textBox3.Text);
 
+                            Json = new JsonInformationClass();
+                            JsonInformationClass JsonData = JsonSerilaize(subLower, subUpper, textBox3.Text, i,file, true);
+                            shapes.Add(JsonData);
                         }
                         else
                         {
+                            
                             deger = i;
-                            string[] sub = SubArray(lines, i - 16, 32);
-                            Console.WriteLine(sub);
-                            string json = JsonConvert.SerializeObject(sub);
-                            JsonSerializer serializer = new JsonSerializer();
-                            StreamWriter jsonStream = System.IO.File.CreateText(@"C:/Users/admin/Desktop/test.json");
-                            JsonSerializer jsonSerializer = new JsonSerializer();
-                            serializer.Serialize(jsonStream, sub);
-                            jsonStream.Close();
-                            System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i + textBox3.Text);
-
+                         
+                            string[] subLower = SubArray(lines, i -15, 15);
+                            int a = lines.Length - i;
+                            if (a < 15)
+                            {
+                            
+                                string[] subUpper2 = SubArray(lines, i, lines.Length -i);
+                                JsonInformationClass JsonData2 = JsonSerilaize(subLower, subUpper2, textBox3.Text, i, file, true);
+                                shapes.Add(JsonData2);
+                        
+                              
+                            }
+                            else
+                            {
+                                string[] subUpper = SubArray(lines, i, 15);
+                                string[] subLower2 = SubArray(lines, i - 15, 15);
+                                JsonInformationClass JsonData = JsonSerilaize(subLower2, subUpper, textBox3.Text, i, file, true);
+                               
+                                shapes.Add(JsonData);
+                            }
+                            //    Console.WriteLine(sub);
+                            //    string json = JsonConvert.SerializeObject(sub);
+                            //     JsonSerializer serializer = new JsonSerializer();
+                            //    StreamWriter jsonStream = System.IO.File.CreateText(@"C:/Users/admin/Desktop/test.json");
+                            //    System.IO.File.AppendAllText(@"C:/Users/admin/Desktop/test.json", file + i + textBox3.Text);
+                            //   object a =   JsonSerilaize(i-16, i+16, textBox3.Text, i, path, true);
+                            //    string JsonData = JsonConvert.SerializeObject(a);
+                            //   System.IO.File.WriteAllText(path, JsonData);
                         }
                     }
                 }
             }
-
+            string path = @"C:\Users\admin\Desktop/test.json";
+            string shapesData = JsonConvert.SerializeObject(shapes);
+            System.IO.File.WriteAllText(path, shapesData);
         }
         public static string[] SubArray(string[] data, int index, int length)
         {
@@ -118,7 +157,8 @@ namespace idefix
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            textBox4.Text = "C:\test";
+            textBox4.Text = @"C:\test";
+            textBox3.Text = @"burak";
         }
     }
 }
