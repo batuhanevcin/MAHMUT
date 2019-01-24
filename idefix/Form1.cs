@@ -29,11 +29,6 @@ namespace idefix
             log.Info("Entering application.");
         }
 
-        private void TextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             JsonInformationClass json = new JsonInformationClass();
@@ -70,6 +65,7 @@ namespace idefix
             jsonObj.SearchLine = SearchLine;
             jsonObj.SearchTerm = SearchTerm;
             jsonObj.Path = path;
+            jsonObj.IsSucces = IsSucces;
             return jsonObj;
         }
         private void FileRead(object Json)
@@ -80,10 +76,11 @@ namespace idefix
            .Where(s => s.EndsWith(".txt") || s.EndsWith(".css") || s.EndsWith(".json") || s.EndsWith(".php") || s.EndsWith(".html"));
             foreach (var file in files)
             {
+
                 SearchAccessibleFiles(textBox4.Text, textBox3.Text);
                 var lines = System.IO.File.ReadAllLines(file);
                 int deger = 0;
-               
+
                 for (int i = 0; i < lines.Length; i++)
                 {
 
@@ -96,39 +93,49 @@ namespace idefix
                             MessageBox.Show("istenilen degerler bulundu");
                             string[] subLower = null;
 
-                            string[] subUpper = SubArray(lines, 0, i+1);
-                        
+                            string[] subUpper = SubArray(lines, 0, i + 1);
+
                             //StreamWriter jsonStream = System.IO.File.CreateText(path);
                             //JsonSerializer jsonSerializer = new JsonSerializer();
                             //serializer.Serialize(jsonStream, sub);
                             //jsonStream.Close();
                             //        System.IO.File.AppendAllText(path, file + "/n Istenilen Deger" + i + textBox3.Text);
-
+                            bool IsSucces = true;
                             Json = new JsonInformationClass();
-                            JsonInformationClass JsonData = JsonSerilaize(subLower, subUpper, textBox3.Text, i,file, true);
+                            string root = Path.GetFileName(file);
+                            string root2 = Path.GetPathRoot(file);
+                            string pathFiles = root2 + root;
+                            JsonInformationClass JsonData = JsonSerilaize(subLower, subUpper, textBox3.Text, i, pathFiles, IsSucces);
+                       
                             shapes.Add(JsonData);
+
                         }
                         else
                         {
-                            
                             deger = i;
-                         
-                            string[] subLower = SubArray(lines, i -15, 15);
+
+                            string[] subLower = SubArray(lines, i - 15, 15);
                             int a = lines.Length - i;
                             if (a < 15)
                             {
-                            
-                                string[] subUpper2 = SubArray(lines, i, lines.Length -i);
-                                JsonInformationClass JsonData2 = JsonSerilaize(subLower, subUpper2, textBox3.Text, i, file, true);
+                                bool IsSucces = true;
+                                string[] subUpper2 = SubArray(lines, i, lines.Length - i);
+                                string root = Path.GetFileName(file);
+                                string root2 = Path.GetPathRoot(file);
+                                string pathFiles = root2 + root;
+                                JsonInformationClass JsonData2 = JsonSerilaize(subLower, subUpper2, textBox3.Text, i, pathFiles, IsSucces);
+                               
                                 shapes.Add(JsonData2);
-                        
-                              
                             }
                             else
                             {
                                 string[] subUpper = SubArray(lines, i, 15);
                                 string[] subLower2 = SubArray(lines, i - 15, 15);
-                                JsonInformationClass JsonData = JsonSerilaize(subLower2, subUpper, textBox3.Text, i, file, true);
+                                bool IsSucces = true;
+                                string root = Path.GetFileName(file);
+                                string root2 = Path.GetPathRoot(file);
+                                string pathFiles = root2 + root;
+                                JsonInformationClass JsonData = JsonSerilaize(subLower2, subUpper, textBox3.Text, i, root, IsSucces);
                                
                                 shapes.Add(JsonData);
                             }

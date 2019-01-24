@@ -52,7 +52,6 @@
             this.textBox3.TabIndex = 2;
             this.textBox3.Text = "Aramakistediğiniz kelime";
             this.textBox3.UseWaitCursor = true;
-            this.textBox3.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
             // 
             // button1
             // 
